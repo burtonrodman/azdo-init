@@ -11,18 +11,19 @@ repository: MyProject
 
 # For branches, all values are optional and if not supplied are turned off.
 # boolean like values interpreted per https://yaml.org/type/bool.html
+# integer values interpreted per https://yaml.org/type/int.html
 
 branches:
   develop:
   master:
-    minimum-reviewers: !!integer = 0
-    approve-own-changes: !!bool = false
-    complete-if-not-approved: !!bool = false
-    reset-votes-on-new-change: !!bool = false
+    minimum-reviewers: 2                    # !!int = 0
+    approve-own-changes: true               # !!bool = false
+    complete-if-not-approved: true          # !!bool = false
+    reset-votes-on-new-change: true         # !!bool = false
     automatic-reviewers:
-      - burtonrodman
-    linked-work-items: required|warn
-    comment-resolution: required|warn
-    merge-strategy: squash|no-fast-forward
+      - burtonrodman                        # string, and identity that can be resolved in the account
+    linked-work-items: ignore|warn|required      # string = ignore
+    comment-resolution: ignore|warn|required     # string = ignore
+    merge-strategy: none|squash|no-fast-forward  # string = none
     build: TDB
     external-services: TBD
