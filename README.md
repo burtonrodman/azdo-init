@@ -1,8 +1,7 @@
 # dotnet azdo-init
-A dotnet global tool to initialize (and update) "all the things" in Azure DevOps (TFS, VSTS) in a code as configuration / desired state manner.
+A dotnet global tool to initialize (and update) Repositories, Builds and Releases in Azure DevOps and TFS 2017+, in a code as configuration / desired state manner.
 
-# Project non-goals:
-1. Reproduce any existing tools.
+Where feasible, both TFS 2017+ and Azure DevOps will be supported.  If Azure DevOps adds a feature (like yml builds), this tool should use it's file formats and conventions as much as possible and poly-fill for older versions.
 
 # Project goals:
 1. [ ] create a dotnet global tool that...
