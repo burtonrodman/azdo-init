@@ -1,0 +1,11 @@
+version: '1.0'
+
+# [required] Your TFS or Azure DevOps instance URL
+account: https://dev.azure.com/youraccount
+
+# [optional] Your Team Project name.  Defaults to current directory name.
+project: MyProject
+
+# [optional] Repository Name.  Defaults to current directory name.
+repository: MyProject
+
