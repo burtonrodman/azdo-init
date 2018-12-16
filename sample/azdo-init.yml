@@ -9,3 +9,20 @@ project: MyProject
 # [optional] Repository Name.  Defaults to current directory name.
 repository: MyProject
 
+# For branches, all values are optional and if not supplied are turned off.
+# boolean like values interpreted per https://yaml.org/type/bool.html
+
+branches:
+  develop:
+  master:
+    minimum-reviewers: !!integer = 0
+    approve-own-changes: !!bool = false
+    complete-if-not-approved: !!bool = false
+    reset-votes-on-new-change: !!bool = false
+    automatic-reviewers:
+      - burtonrodman
+    linked-work-items: required|warn
+    comment-resolution: required|warn
+    merge-strategy: squash|no-fast-forward
+    build: TDB
+    external-services: TBD
