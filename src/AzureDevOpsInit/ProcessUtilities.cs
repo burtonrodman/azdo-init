@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace azdo_init
+namespace AzureDevOpsInit
 {
 
     public static class ProcessUtilities

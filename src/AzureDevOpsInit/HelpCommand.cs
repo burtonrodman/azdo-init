@@ -1,4 +1,4 @@
-namespace azdo_init
+namespace AzureDevOpsInit
 {
     public class HelpCommand
     {

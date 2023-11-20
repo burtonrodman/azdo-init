@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using YamlDotNet.Serialization;
 
-namespace azdo_init
+namespace AzureDevOpsInit
 {
     public class RepositoryOptions
     {

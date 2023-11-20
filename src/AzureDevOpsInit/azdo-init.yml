@@ -1,0 +1,34 @@
+version: '1.0'
+
+# [required] Your Azure DevOps instance URL
+account: ${AzureDevOpsCollectionUrl}
+
+# [optional] Your Team Project name.  Defaults to current directory name.
+# project: ${TeamProjectName}
+
+# [optional] Repository Name.  Defaults to current directory name.
+repository: ${RepositoryName}
+
+# pipelines:
+# - name: folder\PinelineName
+#   source: azure-pipelines.yml
+
+# For branches, all values are optional and if not supplied are turned off.
+# boolean like values interpreted per https://yaml.org/type/bool.html
+# integer values interpreted per https://yaml.org/type/int.html
+branches:
+- name: master
+  # minimum-reviewers: 2                    # !!int = 0
+  # approve-own-changes: true               # !!bool = false
+  # complete-if-not-approved: true          # !!bool = false
+  # reset-votes-on-new-change: true         # !!bool = false
+  # automatic-reviewers:
+  # - burtonrodman                        # string, and identity that can be resolved in the account
+  # linked-work-items: ignore|warn|required      # string = ignore
+  # comment-resolution: ignore|warn|required     # string = ignore
+  # merge-strategy: none|squash|no-fast-forward  # string = none
+  # build: TDB
+  # external-services: TBD
+  
+- name: dev
+  default: true
