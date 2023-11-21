@@ -27,7 +27,7 @@ public class InitCommand : Command
         }
         else 
         {
-            using (var stream = typeof(InitCommand).Assembly.GetManifestResourceStream("AzureDevOpsInit.template.yml"))
+            using (var stream = typeof(InitCommand).Assembly.GetManifestResourceStream("AzureDevOpsInit.template.yml")!)
             using (var reader = new StreamReader(stream))
             {
                 File.WriteAllText(fullPath, reader.ReadToEnd());

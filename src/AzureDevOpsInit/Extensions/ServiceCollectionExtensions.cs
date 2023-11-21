@@ -8,13 +8,14 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddAllAsSingleton<T>(this IServiceCollection services)
     {
-        var commandType = typeof(T);
-        var commands = typeof(Program).Assembly
+        var keyType = typeof(T);
+        var implementations = typeof(Program).Assembly
             .GetExportedTypes()
-            .Where(t => commandType.IsAssignableFrom(t));
-        foreach (var command in commands)
+            .Where(t => !keyType.IsInterface)
+            .Where(t => keyType.IsAssignableFrom(t));
+        foreach (var impl in implementations)
         {
-            services.AddSingleton(commandType, command);
+            services.AddSingleton(keyType, impl);
         }
 
         return services;

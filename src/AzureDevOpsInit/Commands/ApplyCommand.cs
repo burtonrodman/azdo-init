@@ -17,15 +17,17 @@ public class ApplyCommand : Command
 {
     private readonly ILogger<ApplyCommand> _logger;
     private readonly GitRepo _gitRepo;
+    private readonly IInitConfigurationProvider _initConfigurationProvider;
 
     public ApplyCommand(
         ILogger<ApplyCommand> logger,
-        GitRepo gitRepo)
+        GitRepo gitRepo,
+        IInitConfigurationProvider initConfigurationProvider)
         : base("apply", "apply settings from azdo-init.yml to the project.")
     {
         _logger = logger;
         _gitRepo = gitRepo;
-
+        _initConfigurationProvider = initConfigurationProvider;
         this.SetHandler(Execute);
     }
 
@@ -36,7 +38,9 @@ public class ApplyCommand : Command
         // TODO - validate account
         // TODO - validate project
         
-        var config = ReadConfiguration();
+        var config = _initConfigurationProvider.Read();
+        if (config is null) return Task.FromResult(1);
+
         if (string.IsNullOrWhiteSpace(config.Repository))
         {
             config.Repository = new DirectoryInfo(Environment.CurrentDirectory).Name;
@@ -57,22 +61,5 @@ public class ApplyCommand : Command
         }
 
         return Task.FromResult(0);
-    }
-
-    private AzureDevOpsInitConfiguration ReadConfiguration()
-    {
-        var fullPath = Path.GetFullPath("azdo-init.yml");
-        if (!File.Exists(fullPath))
-        {
-            _logger.LogError($"{fullPath} not found.");
-            throw new FileNotFoundException("azdo-init.yml not found.");
-        }
-        _logger.LogInformation($"applying settings from {fullPath}.");
-
-        var serializer = new DeserializerBuilder()
-            .WithNamingConvention(CamelCaseNamingConvention.Instance)
-            .Build();
-
-        return serializer.Deserialize<AzureDevOpsInitConfiguration>(File.ReadAllText(fullPath));
     }
 }

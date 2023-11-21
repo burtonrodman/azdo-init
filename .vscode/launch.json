@@ -12,7 +12,7 @@
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/src/AzureDevOpsInit/bin/Debug/net6.0/AzureDevOpsInit.dll",
             "args": [
-                "apply"
+                "audit"
             ],
             "cwd": "D:\\source\\2010solutions\\VAPlayground",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console

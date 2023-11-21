@@ -1,9 +1,8 @@
-﻿using System;
-using System.CommandLine;
-using System.CommandLine.Builder;
+﻿using System.CommandLine.Builder;
 using System.CommandLine.Parsing;
-using System.IO;
-using System.Threading.Tasks;
+
+using AzureDevOpsInit.Auditors;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -18,17 +17,17 @@ public class Program
 
         var config = new ConfigurationBuilder()
             .SetBasePath(Path.GetDirectoryName(assembly.Location))
-            .AddJsonFile("appsettings.json", true)
+            .AddJsonFile("appsettings.json", false)
             .Build();
 
         var serviceProvider = new ServiceCollection()
             .AddLogging(builder => {
-                builder.SetMinimumLevel(LogLevel.Trace);
                 builder.AddConsole();
             })
             .AddAllAsSingleton<Command>()
             .AddAllAsSingleton<IAuditor>()
             .AddTransient<GitRepo>()
+            .AddSingleton<IInitConfigurationProvider, InitConfigurationProvider>()
             .BuildServiceProvider();
 
         var parser = new CommandLineBuilder()
