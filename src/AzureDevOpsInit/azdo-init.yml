@@ -10,7 +10,7 @@ account: ${AzureDevOpsCollectionUrl}
 repository: ${RepositoryName}
 
 # pipelines:
-# - name: folder\PinelineName
+# - name: folder\PipelineName
 #   source: azure-pipelines.yml
 
 # For branches, all values are optional and if not supplied are turned off.
