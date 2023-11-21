@@ -6,9 +6,9 @@ namespace AzureDevOpsInit;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddAllCommands(this IServiceCollection services)
+    public static IServiceCollection AddAllAsSingleton<T>(this IServiceCollection services)
     {
-        var commandType = typeof(Command);
+        var commandType = typeof(T);
         var commands = typeof(Program).Assembly
             .GetExportedTypes()
             .Where(t => commandType.IsAssignableFrom(t));

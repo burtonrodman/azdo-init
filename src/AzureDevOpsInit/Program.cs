@@ -26,7 +26,8 @@ public class Program
                 builder.SetMinimumLevel(LogLevel.Trace);
                 builder.AddConsole();
             })
-            .AddAllCommands()
+            .AddAllAsSingleton<Command>()
+            .AddAllAsSingleton<IAuditor>()
             .AddTransient<GitRepo>()
             .BuildServiceProvider();
 
