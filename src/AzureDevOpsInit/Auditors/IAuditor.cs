@@ -4,6 +4,6 @@ namespace AzureDevOpsInit.Auditors;
 
 public interface IAuditor
 {
-    IEnumerable<string> Dependencies { get; }
+    int Ordinal { get; }
     Task<string?> Audit(AzureDevOpsInitConfiguration config, Dictionary<string, object> state);
 }

@@ -4,7 +4,7 @@ using AzureDevOpsInit.Auditors;
 
 public class PipelineAuditor : IAuditor
 {
-    public IEnumerable<string> Dependencies => [];
+    public int Ordinal => 80;
 
     public Task<string?> Audit(AzureDevOpsInitConfiguration config, Dictionary<string, object> state)
     {

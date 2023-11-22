@@ -15,7 +15,7 @@ public static class ServiceCollectionExtensions
             .Where(t => keyType.IsAssignableFrom(t));
         foreach (var impl in implementations)
         {
-            services.AddSingleton(keyType, impl);
+            services.AddTransient(keyType, impl);
         }
 
         return services;

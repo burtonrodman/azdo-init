@@ -4,7 +4,7 @@ using AzureDevOpsInit.Auditors;
 
 public class BranchPolicyAuditor : IAuditor
 {
-    public IEnumerable<string> Dependencies => [ "remoteRepository" ];
+    public int Ordinal => 100;
 
     public Task<string?> Audit(AzureDevOpsInitConfiguration config, Dictionary<string, object> state)
     {

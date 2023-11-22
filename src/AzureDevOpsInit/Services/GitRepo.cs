@@ -1,4 +1,6 @@
 
+using System.Linq;
+
 using Microsoft.Extensions.Logging;
 
 using static AzureDevOpsInit.ProcessUtilities;
@@ -45,5 +47,14 @@ public class GitRepo
     public void Commit(string message)
     {
         ExecuteProcess("git", $"commit -m \"{message}\"");
+    }
+
+    public IEnumerable<string> GetBranches()
+    {
+        var branches = ExecuteProcess("git", "branch");
+        var branchLines = branches.Split("\n".ToCharArray());
+        return branchLines
+            .Where(b => b.Length > 2)
+            .Select(b => b[2..].Trim()).ToArray();
     }
 }

@@ -3,7 +3,7 @@ using AzureDevOpsInit.Auditors;
 
 public class VariableGroupAuditor : IAuditor
 {
-    public IEnumerable<string> Dependencies => [];
+    public int Ordinal => 90;
 
     public Task<string?> Audit(AzureDevOpsInitConfiguration config, Dictionary<string, object> state)
     {

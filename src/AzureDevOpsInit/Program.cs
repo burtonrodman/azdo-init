@@ -25,7 +25,11 @@ public class Program
                 builder.AddConsole();
             })
             .AddAllAsSingleton<Command>()
-            .AddAllAsSingleton<IAuditor>()
+            .AddSingleton<IAuditor, BranchPolicyAuditor>()
+            .AddSingleton<IAuditor, LocalRepoAuditor>()
+            .AddSingleton<IAuditor, PipelineAuditor>()
+            .AddSingleton<IAuditor, RemoteRepoAuditor>()
+            .AddSingleton<IAuditor, VariableGroupAuditor>()
             .AddTransient<GitRepo>()
             .AddSingleton<IInitConfigurationProvider, InitConfigurationProvider>()
             .BuildServiceProvider();

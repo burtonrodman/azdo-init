@@ -1,4 +1,6 @@
 
+using System.Linq;
+
 using AzureDevOpsInit.Auditors;
 
 using Microsoft.Extensions.Logging;
@@ -17,10 +19,10 @@ public class AuditCommand : Command
         IInitConfigurationProvider initConfigurationProvider)
         : base("audit", "Audit the project's configuration based on settings in an azdo-init.yml file in the current folder.")
     {
-        this.SetHandler(Execute);
         _logger = logger;
         _auditors = auditors;
         _initConfigurationProvider = initConfigurationProvider;
+        this.SetHandler(Execute);
     }
 
     public async Task<int> Execute()
@@ -29,9 +31,9 @@ public class AuditCommand : Command
         if (config is null) return 1;
 
         var state = new Dictionary<string, object>();
-        foreach (var auditor in _auditors)
+        foreach (var auditor in _auditors.OrderBy(x => x.Ordinal))
         {
-            await auditor.Audit(state);
+            await auditor.Audit(config, state);
         }
 
         return 0;

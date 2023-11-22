@@ -6,7 +6,7 @@ using AzureDevOpsInit.Auditors;
 
 public class RemoteRepoAuditor : IAuditor
 {
-    public IEnumerable<string> Dependencies => [ "localRepo" ];
+    public int Ordinal => 20;
 
     public Task<string?> Audit(AzureDevOpsInitConfiguration config, Dictionary<string, object> state)
     {
